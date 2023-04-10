@@ -146,6 +146,7 @@ def visualize_detections(
 last_time = time.time()
 
 while True:
+    last_time = time.time()
     # img_path = 'example-bluePlayer.PNG'
     img_path = 'example-livingRoom.jpg'
     last_time_load = time.time()
@@ -173,9 +174,9 @@ while True:
     #print('loop took {} seconds'.format(time.time()-last_time))
     print('FPS_total = ', 1/(time.time()-last_time + 0.000000000000001))
 
-    detections = preds
 
 
+'''  FAIL with keras preds
     # for each detection, the description (7) contains : [image_id, label, conf, x_min, y_min, x_max, y_max]
     for i in range(detections.shape[2]):
         # confidence of prediction
@@ -206,5 +207,4 @@ while True:
                 cv2.putText(frame, label, (x_top_left, y_top_left),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0))
 
-
-    last_time = time.time()
+'''
