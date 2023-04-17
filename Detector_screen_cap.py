@@ -148,6 +148,9 @@ class Detector:
         while True:
             currentTime = time.time()
 
+            # fix colors
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
             fps = 1/(currentTime - startTime)
             startTime = currentTime
 
