@@ -12,13 +12,16 @@ tf.config.experimental.set_memory_growth(physical_devices[0], True)
 ##############
 
 
-### this first model works fine so far on my machine with static images
-modelURL = "http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8.tar.gz"
+### this first model works fine so far on my machine with static images, vid file, and screen_cap (~8 FPS)
+# modelURL = "http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8.tar.gz"
+
+### WORKING BEST SO FAR WITH Unreal Tourn and screen_cap
+modelURL = "http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_mobilenet_v2_320x320_coco17_tpu-8.tar.gz"
 
 ### this model is sketchy, crashes VS Code with OOM unless you bounce VS Code before running
 # modelURL = "http://download.tensorflow.org/models/object_detection/tf2/20200711/efficientdet_d4_coco17_tpu-32.tar.gz"
 
-### can properly load or run this model
+### can't properly load or run this model - throws errors
 # modelURL = "http://download.tensorflow.org/models/object_detection/tf2/20210210/centernet_mobilenetv2fpn_512x512_coco17_od.tar.gz"
 
 classFile = "coco.names"

@@ -135,8 +135,8 @@ class Detector:
     
 
     def capture_window(self):
-        # game in 1024 x 768 windowed mode
-        image =  np.array(ImageGrab.grab(bbox=(0,0,1024,768)))
+        # game in 1600 x 900 windowed mode
+        image =  np.array(ImageGrab.grab(bbox=(0,0,1600,900)))
         return image
 
 
