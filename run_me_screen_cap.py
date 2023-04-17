@@ -28,7 +28,21 @@ classFile = "coco.names"
 # imagePath = "test/example-livingRoom.jpg"
 imagePath = "example-bluePlayer.PNG"
 videoPath = "street.mp4"
-threshold = 0.5
+
+threshold = 0.38
+
+
+'''
+
+NEXT UP...work next on
+
+-- thresholding
+-- filtering by class ("person" only)
+-- eliminatimg bboxes that have more red than blue
+--- (blue team is the ememy, so disqualify targets that are red)
+-- elimiate bboxes that are horizontal rectangles since those are likely downed targets
+
+'''
 
 detector = Detector()
 detector.readClasses(classFile)
@@ -36,4 +50,4 @@ detector.downloadModel(modelURL)
 detector.loadModel()
 # detector.predictImage(imagePath, threshold)
 # detector.predictVideo(videoPath, threshold)
-detector.predictImgCap(threshold = 0.5)
+detector.predictImgCap(threshold)
