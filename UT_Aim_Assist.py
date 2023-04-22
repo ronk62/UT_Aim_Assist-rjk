@@ -59,14 +59,27 @@ class Detector:
         # detFPS = 1/((detEndTime + 0.000000000001) - detStartTime)
         # print("detFPS = ", detFPS)
 
-        bboxs = detections['detection_boxes'][0].numpy()
-        classIndexes = detections['detection_classes'][0].numpy().astype(np.int32)
-        classScores = detections['detection_scores'][0].numpy()
+        bboxs = []
+        classIndexes = []
+        classScores = []
+
+        bboxs_all = detections['detection_boxes'][0].numpy()
+        classIndexes_all = detections['detection_classes'][0].numpy().astype(np.int32)
+        classScores_all = detections['detection_scores'][0].numpy()
+
+        for i in range(len(bboxs_all)):
+            if classIndexes_all[i] == 1:
+                bboxs.append(bboxs_all[i])
+                classIndexes.append(classIndexes_all[i])
+                classScores.append(classScores_all[i])
 
         imH, imW, imC = image.shape
 
+        # bboxIdx = tf.image.non_max_suppression(bboxs, classScores, max_output_size=50,
+        #                                        iou_threshold=threshold, score_threshold=threshold)
+        
         bboxIdx = tf.image.non_max_suppression(bboxs, classScores, max_output_size=50,
-                                               iou_threshold=threshold, score_threshold=threshold)
+                                               iou_threshold=0.1, score_threshold=0.4)
         
         ## for testing
         # print(bboxIdx)
@@ -83,12 +96,13 @@ class Detector:
                 displayText = '{}: {}%'.format(classLabelText, classConfidence)
 
                 ymin, xmin, ymax, xmax = bbox
-
                 xmin, xmax, ymin, ymax = (xmin * imW, xmax * imW, ymin * imH, ymax * imH)
-                xmin, xmax, ymin, ymax = int(xmin), int(xmax), int(ymin), int(ymax)
 
-                cv2.rectangle(image, (xmin, ymin), (xmax, ymax), color=classColor, thickness=1)
-                cv2.putText(image, displayText, (xmin, ymin -10 ), cv2.FONT_HERSHEY_PLAIN, 1, classColor, 2)
+                if (ymax - ymin) > 1.3 * (xmax -xmin):
+                    xmin, xmax, ymin, ymax = int(xmin), int(xmax), int(ymin), int(ymax)
+
+                    cv2.rectangle(image, (xmin, ymin), (xmax, ymax), color=classColor, thickness=1)
+                    cv2.putText(image, displayText, (xmin, ymin -10 ), cv2.FONT_HERSHEY_PLAIN, 1, classColor, 2)
 
         return image
 

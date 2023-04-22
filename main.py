@@ -3,7 +3,7 @@
 # ref https://www.youtube.com/watch?v=2yQqg_mXuPQ&t=654s
 # initial setup 4/9/2023
 
-from Detector_screen_cap import *
+from UT_Aim_Assist import *
 
 ##############
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
