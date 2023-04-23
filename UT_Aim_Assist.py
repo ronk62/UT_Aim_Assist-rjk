@@ -98,11 +98,19 @@ class Detector:
                 ymin, xmin, ymax, xmax = bbox
                 xmin, xmax, ymin, ymax = (xmin * imW, xmax * imW, ymin * imH, ymax * imH)
 
-                if (ymax - ymin) > 1.3 * (xmax -xmin):
-                    xmin, xmax, ymin, ymax = int(xmin), int(xmax), int(ymin), int(ymax)
+                bbox_height = (ymax - ymin)
+                bbox_ycenter = (ymax - ymin)/2
+                
+                bbox_width = (xmax - xmin)
+                bbox_xcenter = (xmax - xmin)/2
 
-                    cv2.rectangle(image, (xmin, ymin), (xmax, ymax), color=classColor, thickness=1)
-                    cv2.putText(image, displayText, (xmin, ymin -10 ), cv2.FONT_HERSHEY_PLAIN, 1, classColor, 2)
+                if bbox_height > 1.3 * bbox_width:
+                    if bbox_ycenter > 300 and bbox_ycenter < 600:
+                        if bbox_xcenter > 650 and bbox_ycenter < 950:
+                            xmin, xmax, ymin, ymax = int(xmin), int(xmax), int(ymin), int(ymax)
+
+                            cv2.rectangle(image, (xmin, ymin), (xmax, ymax), color=classColor, thickness=1)
+                            cv2.putText(image, displayText, (xmin, ymin -10 ), cv2.FONT_HERSHEY_PLAIN, 1, classColor, 2)
 
         return image
 
