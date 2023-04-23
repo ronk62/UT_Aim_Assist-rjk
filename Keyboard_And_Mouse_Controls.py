@@ -1,19 +1,12 @@
 # no she-bang in Windows
 
-'''
-ref:
-
-
-
-'''
+# ref: C:\Users\ronk6\OneDrive\Documents\PythonProjects\winLocalPython\Halo_Aim_Assistant-master_g-make-it
 
 import ctypes
 import time
-import win32com.client as comclt
+## unused?
+# import win32com.client as comclt
 import win32api, win32con, win32gui, win32ui
-import keyboard
-import pyautogui
-import math
 
 
 SendInput = ctypes.windll.user32.SendInput
@@ -68,11 +61,18 @@ def ReleaseKey(hexKeyCode):
 def click():
     # win32api.SetCursorPos((x,y))
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0,0,0)
-    time.sleep(0.2)
+    time.sleep(0.001)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0,0,0)
 
+def AimMouse(target):
+    offsetY, offsetX = target
+    y_distance = -1 * (450 - offsetY)
+    x_distance = -1 * (800 - offsetX)
+    win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, x_distance, y_distance, 0, 0)
 
-# directx scan codes http://www.gamespp.com/directx/directInputKeyboardScanCodes.html
-wsh= comclt.Dispatch("WScript.Shell")
-wsh.AppActivate("Unreal Tournament") # select another application
-time.sleep(3)
+def AimMouseAlt(target):
+    offsetY, offsetX = target
+    # y_distance = -1 * (450 - offsetY)
+    y_distance = int(((offsetY - 450)/450) * 100)
+    x_distance = int(((offsetX - 800)/800) * 100)
+    win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, x_distance, y_distance, 0, 0)
