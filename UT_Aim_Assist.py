@@ -99,10 +99,10 @@ class Detector:
                 xmin, xmax, ymin, ymax = (xmin * imW, xmax * imW, ymin * imH, ymax * imH)
 
                 bbox_height = (ymax - ymin)
-                bbox_ycenter = (ymax - ymin)/2
+                bbox_ycenter = ymin + bbox_height/2
                 
                 bbox_width = (xmax - xmin)
-                bbox_xcenter = (xmax - xmin)/2
+                bbox_xcenter = xmin + bbox_width/2
 
                 if bbox_height > 1.3 * bbox_width:
                     if bbox_ycenter > 300 and bbox_ycenter < 600:
