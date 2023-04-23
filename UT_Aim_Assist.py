@@ -74,6 +74,9 @@ class Detector:
                 bboxs.append(bboxs_all[i])
                 classIndexes.append(classIndexes_all[i])
                 classScores.append(classScores_all[i])
+        
+        if bboxs == []:
+            return image, targetList
 
         imH, imW, imC = image.shape
 
