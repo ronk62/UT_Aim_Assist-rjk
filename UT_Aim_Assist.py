@@ -7,6 +7,7 @@ import cv2, time, os, tensorflow as tf
 import numpy as np
 from tensorflow.python.keras.utils.data_utils import get_file
 from PIL import ImageGrab, Image, ImageDraw
+from Keyboard_And_Mouse_Controls import *
 
 np.random.seed(123)
 
@@ -187,6 +188,17 @@ class Detector:
             for target in range(len(targetList)):
                 ## next line for testing
                 print("target = ", targetList[target])
+
+                # # move mouse to point at target
+                # AimMouse(targetList[target])
+
+                # move mouse to point at target
+                AimMouseAlt(targetList[target])
+
+                # fire at target 3 times
+                click()
+                click()
+                click()
 
             cv2.putText(bboxImage, "FPS: " + str(int(fps)), (20, 70), cv2.FONT_HERSHEY_PLAIN, 2, (0,255,0),2)
             cv2.imshow("Result", bboxImage)
