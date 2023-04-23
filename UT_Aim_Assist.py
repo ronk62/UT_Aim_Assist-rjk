@@ -62,6 +62,7 @@ class Detector:
         bboxs = []
         classIndexes = []
         classScores = []
+        targetList = []
 
         bboxs_all = detections['detection_boxes'][0].numpy()
         classIndexes_all = detections['detection_classes'][0].numpy().astype(np.int32)
@@ -112,14 +113,18 @@ class Detector:
                             cv2.rectangle(image, (xmin, ymin), (xmax, ymax), color=classColor, thickness=1)
                             cv2.putText(image, displayText, (xmin, ymin -10 ), cv2.FONT_HERSHEY_PLAIN, 1, classColor, 2)
 
-        return image
+                            target = (int(ymin + 0.25 * bbox_height), int(bbox_xcenter))
+
+                            targetList.append(target)
+
+        return image, targetList
 
     
     
     def predictImage(self, imagePath, threshold = 0.5):
         image = cv2.imread(imagePath)
 
-        bboxImage = self.createBoundigBox(image, threshold)
+        bboxImage, targetList = self.createBoundigBox(image, threshold)
 
         cv2.imwrite(self.modelName + ".jpg", bboxImage)
         cv2.imshow("Result", bboxImage)
@@ -143,7 +148,7 @@ class Detector:
             fps = 1/(currentTime - startTime)
             startTime = currentTime
 
-            bboxImage = self.createBoundigBox(image, threshold)
+            bboxImage, targetList = self.createBoundigBox(image, threshold)
 
             cv2.putText(bboxImage, "FPS: " + str(int(fps)), (20, 70), cv2.FONT_HERSHEY_PLAIN, 2, (0,255,0),2)
             cv2.imshow("Result", bboxImage)
@@ -176,7 +181,12 @@ class Detector:
             fps = 1/(currentTime - startTime)
             startTime = currentTime
 
-            bboxImage = self.createBoundigBox(image, threshold)
+            bboxImage, targetList = self.createBoundigBox(image, threshold)
+
+            # aim and shoot at targets
+            for target in range(len(targetList)):
+                ## next line for testing
+                print("target = ", targetList[target])
 
             cv2.putText(bboxImage, "FPS: " + str(int(fps)), (20, 70), cv2.FONT_HERSHEY_PLAIN, 2, (0,255,0),2)
             cv2.imshow("Result", bboxImage)
