@@ -34,13 +34,14 @@ threshold = 0.38
 
 '''
 
-NEXT UP...work next on
+NEXT UP work on...
 
--- thresholding
--- filtering by class ("person" only)
+-- lead the target
 -- eliminatimg bboxes that have more red than blue
 --- (blue team is the ememy, so disqualify targets that are red)
--- elimiate bboxes that are horizontal rectangles since those are likely downed targets
+mostly done -- thresholding
+done -- filtering by class ("person" only)
+done -- elimiate bboxes that are horizontal rectangles since those are likely downed targets
 
 '''
 
