@@ -192,16 +192,17 @@ class Detector:
                 ## next line for testing
                 print("target = ", targetList[target])
 
-                # # move mouse to point at target
-                # AimMouse(targetList[target])
+                if keyboard.is_pressed(45):
+                    # # move mouse to point at target
+                    # AimMouse(targetList[target])
 
-                # move mouse to point at target
-                AimMouseAlt(targetList[target])
+                    # move mouse to point at target
+                    AimMouseAlt(targetList[target])
 
-                # fire at target 3 times
-                click()
-                click()
-                click()
+                    # fire at target 3 times
+                    click()
+                    click()
+                    click()
 
             cv2.putText(bboxImage, "FPS: " + str(int(fps)), (20, 70), cv2.FONT_HERSHEY_PLAIN, 2, (0,255,0),2)
             cv2.imshow("Result", bboxImage)

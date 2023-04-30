@@ -7,6 +7,7 @@ import time
 ## unused?
 # import win32com.client as comclt
 import win32api, win32con, win32gui, win32ui
+import keyboard
 
 
 SendInput = ctypes.windll.user32.SendInput
