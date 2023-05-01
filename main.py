@@ -5,6 +5,7 @@
 
 from UT_Aim_Assist import *
 
+
 ##############
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
 print("Num GPUs Available: ", len(physical_devices))
@@ -36,6 +37,8 @@ threshold = 0.38
 
 NEXT UP work on...
 
+didn't help -- multi-thread the 'keyboard.is_pressed' feature (stubbed related code)
+-- move from keyboard.is_pressed to something in win32api
 -- lead the target
 -- eliminatimg bboxes that have more red than blue
 --- (blue team is the ememy, so disqualify targets that are red)
@@ -44,6 +47,12 @@ done -- filtering by class ("person" only)
 done -- elimiate bboxes that are horizontal rectangles since those are likely downed targets
 
 '''
+
+# if __name__ == "__main__":
+#     myThread = threading.Thread(target=keyboardInput, args=(1,), daemon=True)
+#     myThread.start()
+#     print ("keyboardInput thread started...")
+
 
 detector = Detector()
 detector.readClasses(classFile)

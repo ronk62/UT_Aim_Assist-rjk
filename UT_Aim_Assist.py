@@ -8,6 +8,17 @@ import numpy as np
 from tensorflow.python.keras.utils.data_utils import get_file
 from PIL import ImageGrab, Image, ImageDraw
 from Keyboard_And_Mouse_Controls import *
+# import threading
+
+# x_is_pressed = 0
+
+# def keyboardInput(name):
+#     while (True):
+#         global x_is_pressed  # Declare x_is_pressed as global to force use of global 'x_is_pressed' in this function/thread
+#         x_is_pressed = keyboard.is_pressed(45)
+#         # print("x_is_pressed = ", x_is_pressed)
+#         # time.sleep(0.5)
+#         time.sleep(0.05)
 
 np.random.seed(123)
 
