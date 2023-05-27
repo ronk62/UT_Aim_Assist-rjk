@@ -37,14 +37,22 @@ threshold = 0.38
 
 NEXT UP work on...
 
-didn't help -- multi-thread the 'keyboard.is_pressed' feature (stubbed related code)
--- move from keyboard.is_pressed to something in win32api
+To increase FPS, do the following
+x-- multi-thread the 'keyboard.is_pressed' feature 
+    ---> didn't help (stubbed related code)
+-- move from win32api, win32con to pynput lib
+-- move from keyboard.is_pressed to pynput lib
+-- move from PIL ImageGrab to dxcam lib
+
+To correct/improve the aim, do the following
 -- lead the target
 -- eliminatimg bboxes that have more red than blue
---- (blue team is the ememy, so disqualify targets that are red)
-mostly done -- thresholding
+    --- (blue team is the ememy, so disqualify targets that are red)
 done -- filtering by class ("person" only)
 done -- elimiate bboxes that are horizontal rectangles since those are likely downed targets
+
+General tuning...
+-- work on thresholding (mostly done)
 
 '''
 
