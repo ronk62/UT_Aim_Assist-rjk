@@ -37,10 +37,12 @@ threshold = 0.38
 
 NEXT UP work on...
 
-To increase FPS, do the following
+To increase FPS, do the following...
+--- as of 20230527, overall FPS currently at ~7
+--- inference currently at 77ms, or ~13 FPS, as of 20230527
 x-- multi-thread the 'keyboard.is_pressed' feature 
     ---> didn't help (stubbed related code)
--- move from win32api, win32con to pynput lib
+-- for mouse control, move from win32api, win32con to pynput lib
 -- move from keyboard.is_pressed to pynput lib
 -- move from PIL ImageGrab to dxcam lib
 
