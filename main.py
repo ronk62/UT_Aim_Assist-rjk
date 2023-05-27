@@ -47,7 +47,7 @@ x-- multi-thread the 'keyboard.is_pressed' feature
 -- move from PIL ImageGrab to dxcam lib
 
 To correct/improve the aim, do the following
--- lead the target
+-- lead the target using pattern in 'MyriadX_VPU_Enhanced_UT_Aim_Assist'
 -- eliminatimg bboxes that have more red than blue
     --- (blue team is the ememy, so disqualify targets that are red)
 done -- filtering by class ("person" only)
